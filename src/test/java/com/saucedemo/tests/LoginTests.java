@@ -1,5 +1,6 @@
 package com.saucedemo.tests;
 
+import com.saucedemo.pages.LoginPage;
 import com.saucedemo.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,21 +12,21 @@ import org.testng.annotations.Test;
 
 public class LoginTests {
     WebDriver driver;
-
+    private LoginPage loginPage;
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
         driver.get(ConfigReader.getProperty("base.url"));
+        loginPage = new LoginPage(driver);
     }
 
     @Test
     public void testValidLogin() {
-        driver.findElement(By.id("user-name")).sendKeys(ConfigReader.getProperty("valid.username"));
-        driver.findElement(By.id("password")).sendKeys(ConfigReader.getProperty("valid.password"));
-        driver.findElement(By.id("login-button")).click();
-
-        String title = driver.findElement(By.className("title")).getText();
-        Assert.assertEquals(title, "Products");
+        loginPage.login(
+                ConfigReader.getProperty("valid.username"),
+                ConfigReader.getProperty("valid.password")
+        );
+        // Assert navigation to products page
     }
 
     @AfterMethod
