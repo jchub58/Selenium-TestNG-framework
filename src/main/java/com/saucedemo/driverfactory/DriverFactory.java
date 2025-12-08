@@ -1,4 +1,4 @@
-package com.saucedemo.utils;
+package com.saucedemo.driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

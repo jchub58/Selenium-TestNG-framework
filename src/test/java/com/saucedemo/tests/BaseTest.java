@@ -1,6 +1,6 @@
 package com.saucedemo.tests;
 
-import com.saucedemo.utils.DriverFactory;
+import com.saucedemo.driverfactory.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
