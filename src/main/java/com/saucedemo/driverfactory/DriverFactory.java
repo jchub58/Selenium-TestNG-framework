@@ -1,4 +1,4 @@
-package com.saucedemo.utils;
+package com.saucedemo.driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import utils.ConfigReader;
+import com.saucedemo.utils.ConfigReader;
 
 public class DriverFactory {
     

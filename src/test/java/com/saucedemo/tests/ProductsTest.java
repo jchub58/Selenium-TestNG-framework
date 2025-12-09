@@ -29,6 +29,6 @@ public class ProductsTest extends BaseTest {
     @Test(groups = {"regression"})
     public void testAddToCart() {
         productsPage.addProductToCart(0);
-        Assert.assertEquals(productsPage.getCartBadgeCount(), 1);
+        Assert.assertEquals(productsPage.getCartBadgeCount(), "1");
     }
 }
