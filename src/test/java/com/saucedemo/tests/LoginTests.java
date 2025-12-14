@@ -18,6 +18,7 @@ import com.saucedemo.listener.AllureListener;
 public class LoginTests extends BaseTest {
     private LoginPage loginPage;
 
+
     @BeforeMethod
     public void initPages() {
         loginPage = new LoginPage(driver);
