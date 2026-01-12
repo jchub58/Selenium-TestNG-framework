@@ -2,7 +2,6 @@ package com.saucedemo.driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,43 +9,41 @@ import com.saucedemo.utils.ConfigReader;
 
 public class DriverFactory {
     
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    // ThreadLocal<WebDriver> driver = new ThreadLocal<>(); // commented for single-run (no parallel)
+    private static WebDriver driver;
     
     public static WebDriver initDriver() {
         String browser = ConfigReader.getProperty("browser").toLowerCase();
         
         switch (browser) {
             case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--start-maximized");
-                chromeOptions.addArguments("--disable-notifications");
-                driver.set(new ChromeDriver(chromeOptions));
+                driver = new ChromeDriver();
                 break;
                 
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                driver.set(new FirefoxDriver(firefoxOptions));
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
                 
             case "edge":
-                driver.set(new EdgeDriver());
+                driver = new EdgeDriver();
                 break;
                 
             default:
                 throw new RuntimeException("Browser not supported: " + browser);
         }
         
-        return driver.get();
+        return driver;
     }
     
     public static WebDriver getDriver() {
-        return driver.get();
+        return driver;
     }
     
     public static void quitDriver() {
-        if (driver.get() != null) {
-            driver.get().quit();
-            driver.remove();
+        if (driver != null) {
+            driver.quit();
+            driver = null;
         }
     }
 }
